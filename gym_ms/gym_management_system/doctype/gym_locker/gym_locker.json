@@ -1,0 +1,69 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{###}-{locker_name}",
+ "creation": "2024-02-29 14:47:30.640851",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "locker_name",
+  "avaliable_quantity",
+  "size",
+  "price",
+  "uom"
+ ],
+ "fields": [
+  {
+   "fieldname": "locker_name",
+   "fieldtype": "Data",
+   "label": "Locker Name"
+  },
+  {
+   "fieldname": "avaliable_quantity",
+   "fieldtype": "Int",
+   "label": "Avaliable Quantity"
+  },
+  {
+   "fieldname": "size",
+   "fieldtype": "Select",
+   "label": "Size",
+   "options": "Large\nMedium\nSmall"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Float",
+   "label": "Price"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Select",
+   "label": "UOM",
+   "options": "Month\nQuarter\nYear"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-03-03 01:07:51.797467",
+ "modified_by": "Administrator",
+ "module": "Gym Management System",
+ "name": "Gym Locker",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

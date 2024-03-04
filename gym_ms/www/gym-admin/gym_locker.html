@@ -1,0 +1,45 @@
+{% extends "gym_ms/templates/includes/Main.html" %} {% block content %}
+<div class="container-fluid pt-4 px-4">
+  <div class="row g-5">
+    {% for locker in lockers %}
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="card border-success mb-3" style="max-width: 18rem">
+        <div class="card-header bg-transparent border-success">
+          <div style="float: left">{{locker.locker_name}}</div>
+          <div style="text-align: end">
+            <span class="text-primary">
+              <i class="fa fa-edit"></i>
+            </span>
+            &nbsp;
+
+            <span class="text-primary" data-name="" onclick="">
+              <i class="fa fa-trash"></i>
+            </span>
+          </div>
+        </div>
+        <div class="card-body text-dark">
+          <span class=""
+            >Avaliable Quantity :-
+            <span class="text-primary">
+              {{ locker.avaliable_quantity }}</span
+            ></span
+          >
+          <hr />
+          <span class=""
+            >Size :- <span class="text-primary"> {{ locker.size }}</span></span
+          >
+          <hr />
+          <span class=""
+            >Price :-
+            <span class="text-primary">
+              {{ locker.price }}/{{ locker.uom}}</span
+            ></span
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

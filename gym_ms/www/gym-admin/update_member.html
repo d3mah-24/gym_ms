@@ -1,0 +1,43 @@
+{% extends "gym_ms/templates/includes/Main.html" %} {% block content %}
+<div class="container-fluid pt-4 px-4">
+  <div class="row g-4">
+    <form class="col-sm-6 col-xl-6">
+      <div class="row mb-4">
+        <div class="col">
+          <div data-mdb-input-init class="form-outline">
+            <input type="text" id="form6Example1" class="form-control" />
+            <label class="form-label" for="form6Example1">First name</label>
+          </div>
+        </div>
+        <div class="col">
+          <div data-mdb-input-init class="form-outline">
+            <input type="text" id="form6Example2" class="form-control" />
+            <label class="form-label" for="form6Example2">Last name</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text input -->
+      <div data-mdb-input-init class="form-outline mb-4">
+        <input type="number" id="form6Example3" class="form-control" />
+        <label class="form-label" for="form6Example3">Weight</label>
+      </div>
+
+      <!-- Text input -->
+      <div data-mdb-input-init class="form-outline mb-4">
+        <input type="date" id="form6Example4" class="form-control" />
+        <label class="form-label" for="form6Example4">Date</label>
+      </div>
+
+      <!-- Submit button -->
+      <button
+        data-mdb-ripple-init
+        type="button"
+        class="btn btn-primary btn-block mb-4"
+      >
+        Place order
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

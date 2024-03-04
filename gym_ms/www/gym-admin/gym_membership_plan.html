@@ -1,0 +1,110 @@
+{% extends "gym_ms/templates/includes/Main.html" %}
+
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <div style="text-align: center">
+        <a class="btn btn-primary mb-3" href="/gym-admin/add_membership">
+            Add
+        </a>
+    </div>
+    <div class="row g-5">
+        {% for plan in membership_plans %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card border-success mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-transparent border-success">
+                    <div style="float: left;">
+                        {{plan.plan_name}}
+                    </div>
+                    <div style="text-align: end;">
+                        <span class="text-primary">
+                            <i class="fa fa-edit"></i>
+                        </span>
+                        &nbsp;
+
+                        <span class="text-primary" data-name="{{plan.name}}"
+                              onclick="delete_action(this)">
+                                    <i class="fa fa-trash"></i>
+                                </span>
+                    </div>
+
+
+                    <div>
+                        By {{ plan.full_name}}
+                    </div>
+
+                </div>
+                <div class="card-body text-dark">
+
+                    <span class="">Price :- <span class="text-primary">  {{ frappe.utils.fmt_money(plan.total_price,currency='ETB') }}   </span></span>
+                    <hr/>
+                    <span class="">Shift :- <span class="text-primary">  {{ plan.shift.split("-")[1] }}  </br> {{ plan.shift.split("-")[2] }} Up To {{ plan.shift.split("-")[3] }}</span></span>
+
+
+                </div>
+                <div class="card-footer bg-transparent border-success">
+                    <div style="float: left;">
+                        {{plan.start_date}}
+                        <span class="text-primary text-sm"> To</span>
+                    </div>
+
+                    <div style="text-align: end;">
+                        {{plan.end_date}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<script>
+    var delete_action = async (data) => {
+      console.log(data);
+      await fetch(
+        `/api/method/gym_ms.gym_management_system.api.Rest_api.custom_delete?doc=Gym Membership&name=${data.getAttribute(
+          "data-name"
+        )}`
+      )
+        .then(function (r) {
+          console.log("Done", r);
+        })
+        .catch((e) => console.log("", e));
+        
+      window.location.href="/gym-admin/gym_membership_plan"
+
+    };
+</script>
+
+{% endblock %}
+
+<script>
+    var newOptions = JSON.parse(JSON.stringify("{{planss}}"));
+    alert(newOptions);
+    $(".plan").on("change", async () => {
+      console.log("Input value changed:", $(this).val());
+  
+      var newOptions = $("#data").val();
+      console.log(newOptions);
+      newOptions = JSON.parse(JSON.stringify("{{planss}}"));
+      console.log(2, newOptions);
+      $("#mySelect").empty();
+  
+      await fetch(
+        `/api/method/gym_ms.gym_management_system.api.Rest_api.get_shift`
+      )
+        .then(function (r) {
+          console.log("Done", r);
+        })
+        .catch((e) => console.log("", e));
+  
+      $.each(newOptions, function (index, option) {
+        $("#mySelect").append(
+          $("<option>", {
+            value: option.value,
+            text: option.text,
+          })
+        );
+      });
+    });
+</script>

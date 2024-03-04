@@ -1,0 +1,77 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{###}-Coach-{user}",
+ "creation": "2024-02-27 17:33:15.360326",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "rate",
+  "no_student",
+  "date_of_birth",
+  "experience",
+  "user",
+  "full_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "rate",
+   "fieldtype": "Rating",
+   "label": "Rate"
+  },
+  {
+   "fieldname": "no_student",
+   "fieldtype": "Int",
+   "label": "No Student"
+  },
+  {
+   "fieldname": "experience",
+   "fieldtype": "Int",
+   "label": "Experience"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date Of Birth"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User"
+  },
+  {
+   "depends_on": "user",
+   "fetch_from": "user.full_name",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-03-01 12:31:49.938708",
+ "modified_by": "Administrator",
+ "module": "Gym Management System",
+ "name": "Gym Coach",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

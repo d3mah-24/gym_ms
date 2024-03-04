@@ -1,0 +1,67 @@
+{% extends "gym_ms/templates/includes/Main.html" %} {% block content %}
+<div class="container-fluid pt-4 px-4">
+  <div class="row g-4">
+    <div class="col-sm-12 col-xl-12">
+      <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">Gym Member List</h6>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Full Name</th>
+              <th scope="col">Mobile</th>
+              <th scope="col">Email</th>
+              <th scope="col">Weight</th>
+              <th scope="col">Date Of Birth</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for member in members %}
+
+            <tr>
+              <th scope="row">1</th>
+              <td>{{ member.full_name}}</td>
+              <td>{{member.mobile_no}}</td>
+              <td>{{member.email}}</td>
+              <td>{{member.weight}}</td>
+              <td>{{frappe.format_date(member.date_of_birth)}}</td>
+
+         
+              <td>
+
+                <span
+                  class="btn btn-sm btn-primary"
+                  data-name="{{member.name}}"
+                  onclick="delete_action(this)"
+                  ><i class="fa fa-trash"></i
+                ></span>
+              </td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<script>
+  var delete_action = async (data) => {
+    console.log(data);
+    await fetch(
+      `/api/method/gym_ms.gym_management_system.api.Rest_api.delete?doc=Gym Member&name=${data.getAttribute(
+        "data-name"
+      )}`
+    )
+      .then(function (r) {
+        console.log("Done", r);
+      })
+      .catch((e) => console.log("", e));
+
+      window.location.href="/gym-admin/gym_member"
+  };
+</script>
+
+{% endblock %}

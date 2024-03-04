@@ -1,0 +1,124 @@
+{% extends "gym_ms/templates/includes/Main.html" %} {% block content %}
+<div class="container-fluid pt-4 px-4">
+  <div class="row g-4">
+    <form id="form" class="col-sm-6 col-xl-6">
+      <div class="row mb-4">
+        <div class="col">
+          <div data-mdb-input-init class="form-outline">
+            <label class="form-label" for="form6Example1"> Customer</label>
+            <select name="customer" class="form-control custom-select">
+              <option selected>Select Customer</option>
+              {% for member in members %}
+              <option value="{{member.name}}">{{member.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div data-mdb-input-init class="form-outline">
+            <label class="form-label" for="form6Example2"> Duration</label>
+            <select name="duration" class="form-control custom-select">
+              <option selected>Select Duration</option>
+              <option value="1 Month">1 Month</option>
+              <option value="3 Month">3 Month</option>
+              <option value="6 Month">6 Month</option>
+              <option value="1 Year">1 Year</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text input -->
+      <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="form6Example3">Start Date</label>
+        <input
+          name="start_date"
+          type="date"
+          id="form6Example3"
+          class="form-control"
+        />
+      </div>
+
+      <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="form6Example4">Plan</label>
+        <select name="plan" id="plan" class="form-control custom-select plan">
+          <option selected>Select Plan</option>
+          {% for plan in plans.keys() %}
+          <option value="{{plan}}">{{plan}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div
+        style="display: none"
+        class="shift mb-4"
+        data-mdb-input-init
+        class="form-outline mb-4"
+      >
+        <label class="form-label" for="form6Example4">Shift</label>
+        <select name="shift" class="form-control custom-select shifts">
+          <option selected>Select Shift</option>
+        </select>
+      </div>
+      <!-- Text input -->
+
+      <button
+        data-mdb-ripple-init
+        type="submit"
+        class="btn btn-primary btn-block mb-4"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+<script>
+  $(".plan").on("change", async () => {
+    var newOptions = $(".plan").val();
+
+    $(".shift").css({
+      display: "block",
+    });
+    $(".shifts").empty();
+
+    await fetch(
+      `/api/method/gym_ms.gym_management_system.api.Rest_api.get_shift`
+    )
+      .then(function (r) {
+        return r.json();
+      })
+      .then((data) => {
+        var data = data.message[newOptions];
+        $.each(data, function (index, option) {
+          $(".shifts").append(`<option value=${option}>${option} </option>`);
+        });
+      })
+      .catch((e) => console.log("", e));
+  });
+  $("#form").on("submit", async (event) => {
+    event.preventDefault();
+
+    let formData = {};
+    let inputs = $("#form").serializeArray();
+    $.each(inputs, function (i, input) {
+      formData[input.name] = input.value;
+    });
+    console.log(formData);
+    await fetch(`/api/resource/Gym Membership`, {
+      method: "post",
+      body: JSON.stringify({
+        duration: formData.duration,
+        start_date: formData.start_date,
+        plan: formData.plan,
+        customer: formData.customer,
+        shift: formData.shift,
+      }),
+    })
+      .then(function (r) {
+      console.log(r)
+        window.location.href="/gym-admin/gym_membership_plan"
+
+      })
+      .catch((e) =>  alert(e));
+  });
+</script>
+{% endblock %}

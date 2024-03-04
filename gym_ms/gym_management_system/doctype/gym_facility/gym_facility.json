@@ -1,0 +1,80 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{###}-Facility-{facility_name}",
+ "creation": "2024-02-27 17:15:59.500100",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_jw6s",
+  "facility_name",
+  "description",
+  "quantity",
+  "uom",
+  "facility_condition",
+  "facility_type"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_jw6s",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "facility_name",
+   "fieldtype": "Data",
+   "label": "Facility Name "
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description"
+  },
+  {
+   "fieldname": "quantity",
+   "fieldtype": "Data",
+   "label": "Quantity"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Data",
+   "label": "UoM"
+  },
+  {
+   "fieldname": "facility_condition",
+   "fieldtype": "Select",
+   "label": "Facility Condition",
+   "options": "Brand New\nSlightly Used\nUsed\nOld"
+  },
+  {
+   "fieldname": "facility_type",
+   "fieldtype": "Select",
+   "label": "Facility Type",
+   "options": "Service\nMaterial"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-02-27 21:23:22.573317",
+ "modified_by": "Administrator",
+ "module": "Gym Management System",
+ "name": "Gym Facility",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

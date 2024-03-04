@@ -1,0 +1,50 @@
+{% extends "gym_ms/templates/includes/Main.html" %}
+
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-5">
+        {% for class in gym_class %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card border-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">
+
+                    <div style="float: left;">
+                        {{class.class_name}}
+                    </div>
+                    <div style="text-align: end;">
+                                 <span class="text-primary">
+                                     <i class="fa fa-edit"></i>
+                                 </span>
+                        &nbsp;
+
+                        <span class="text-primary" data-name="" onclick="">
+                                    <i class="fa fa-trash"></i>
+                                </span>
+                    </div>
+
+
+                    <div style="right : 0s">
+                        By {{ class.full_name }}
+                    </div>
+
+                </div>
+                <div class="card-body text-dark">
+                      <span class="card-title">Shift :- <span
+                              class="text-primary"> {{ class.shift.split("-")[1] }} <br/>
+                          {{ class.shift.split("-")[2] }} Up To  {{ class.shift.split("-")[3] }}
+                      </span>
+                    <hr/>
+                    <span class="card-title">Price :- <span class="text-primary"> {{ class.price }}</span></span>
+
+
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
+
